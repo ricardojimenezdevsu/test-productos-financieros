@@ -1,0 +1,11 @@
+.table-toolbar {
+    display: flex;
+    gap: 16px;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+@media screen and (min-width: 768px){
+    
+}
