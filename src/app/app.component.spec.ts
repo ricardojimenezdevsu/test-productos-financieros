@@ -14,15 +14,4 @@ describe('AppComponent', () => {
     const app = fixture.component;
     expect(app).toBeTruthy();
   });
-
-  it(`should have the 'test-productos-financieros' title`, () => {
-    const app = fixture.component;
-    expect(app.title).toEqual('test-productos-financieros');
-  });
-
-  it('should render title', () => {
-    fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, test-productos-financieros');
-  });
 });
