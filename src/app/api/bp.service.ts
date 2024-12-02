@@ -1,36 +1,37 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-
-type ApiFinancialProduct = {
-  id: string;
-  name: string;
-  description: string;
-  logo: string;
-  date_release: Date;
-  date_revision: Date;
-}
+import {
+  ApiFinancialProduct,
+  ApiFinancialProductPage,
+} from './financial-product/api-financial-product.model';
+import { catchError, map, Observable, of } from 'rxjs';
+import { toFinancialProducts } from './financial-product/financial-product.mapper';
+import { FinancialProduct } from '../financial-products/financial-product.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class BpService {
   private _baseUrl = 'http://localhost:3002/bp/products';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
-  getFinancialProducts() {
-    return this.http.get(`${this._baseUrl}`)
+  getFinancialProducts(): Observable<FinancialProduct[]> {
+    return this.http.get<ApiFinancialProductPage>(`${this._baseUrl}`).pipe(
+      map(({ data }) => toFinancialProducts(data)),
+      catchError(() => of([]))
+    );
   }
 
-  createFinancialProduct( payload: ApiFinancialProduct) {
-    return this.http.post(`${this._baseUrl}`,payload)
+  createFinancialProduct(payload: ApiFinancialProduct) {
+    return this.http.post(`${this._baseUrl}`, payload);
   }
 
   updateFinancialProduct(id: string, payload: ApiFinancialProduct) {
-    return this.http.patch(`${this._baseUrl}/${id}`,payload)
+    return this.http.patch(`${this._baseUrl}/${id}`, payload);
   }
 
   deleteFinancialProduct(id: string) {
-    return this.http.delete(`${this._baseUrl}/${id}`)
+    return this.http.delete(`${this._baseUrl}/${id}`);
   }
 }
