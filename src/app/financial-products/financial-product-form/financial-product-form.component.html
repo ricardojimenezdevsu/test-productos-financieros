@@ -2,22 +2,26 @@
     <h3>Formulario de Registro</h3>
     <form [formGroup]="productForm">
         <div>
-            <input type="text" placeholder="ID">
+            <input type="text" placeholder="ID" formControlName="id">
         </div>
         <div>
-            <input type="text" placeholder="Nombre">
+            <input type="text" placeholder="Nombre" formControlName="name">
         </div>
         <div>
-            <input type="text" placeholder="Descripción">
+            <input type="text" placeholder="Descripción" formControlName="description">
         </div>
         <div>
-            <input type="text" placeholder="Logo">
+            <input type="text" placeholder="Logo" formControlName="logo">
         </div>
         <div>
-            <input type="date" placeholder="Fecha Liberación">
+            <input type="date" placeholder="Fecha Liberación" formControlName="releaseDate">
         </div>
         <div>
-            <input type="date" placeholder="Fecha Revisión">
+            <input type="date" placeholder="Fecha Revisión" formControlName="revisionDate">
+        </div>
+        <div class="form-actions">
+            <button type="button" (click)="onCancel()" qa-id="cancel-btn">Cancelar</button>
+            <button type="submit">Agregar</button>
         </div>
     </form>
 </main>

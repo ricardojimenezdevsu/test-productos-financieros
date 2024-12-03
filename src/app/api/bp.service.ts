@@ -27,11 +27,19 @@ export class BpService {
     return this.http.post(`${this._baseUrl}`, payload);
   }
 
+  getFinancialProduct(id: string) {
+    return this.http.get(`${this._baseUrl}/${id}`);
+  }
+
   updateFinancialProduct(id: string, payload: ApiFinancialProduct) {
-    return this.http.patch(`${this._baseUrl}/${id}`, payload);
+    return this.http.put(`${this._baseUrl}/${id}`, payload);
   }
 
   deleteFinancialProduct(id: string) {
     return this.http.delete(`${this._baseUrl}/${id}`);
+  }
+
+  validateFinancialProduct(id: string) {
+    return this.http.get<boolean>(`${this._baseUrl}/verification/${id}`);
   }
 }
