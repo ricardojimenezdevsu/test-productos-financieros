@@ -8,8 +8,8 @@ export function toFinancialProduct(
     id: product.id,
     name: product.name,
     description: product.description,
-    releaseDate: product.date_release,
-    revisionDate: product.date_revision,
+    releaseDate: new Date(product.date_release),
+    revisionDate: new Date(product.date_revision),
     logo: product.logo,
   };
 }

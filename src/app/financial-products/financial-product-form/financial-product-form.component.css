@@ -5,9 +5,19 @@ form {
     input {
         width: 100%;
     }
+    .error {
+        color: #ff0000b4;
+    }
 }
 
-
+.form-actions {
+    display:  flex; 
+    gap: 16px;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    grid-column: span 2 / span 2;
+}
 @media screen and (min-width: 0px){
     form {
         grid-template-columns: 1fr;
