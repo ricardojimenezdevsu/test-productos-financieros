@@ -29,6 +29,7 @@ describe('FinancialProductsListComponent', () => {
         getFinancialProducts: jest
           .fn()
           .mockImplementation(() => of(MOCK_PRODUCTS)),
+        deleteFinancialProduct: jest.fn().mockReturnValue(of({})),
       }),
     ],
   });
@@ -82,5 +83,12 @@ describe('FinancialProductsListComponent', () => {
     fixture.detectChanges();
     const table = fixture.query('[qa-id="financial-products-list"]');
     expect(table?.querySelectorAll('tbody tr').length).toEqual(11);
+  });
+
+  it('should navigate to edit product', () => {
+    const navigateSpy = jest.spyOn(component['router'], 'navigate');
+
+    component.onEditProduct('test');
+    expect(navigateSpy).toHaveBeenCalledWith(['/products/edit', 'test']);
   });
 });

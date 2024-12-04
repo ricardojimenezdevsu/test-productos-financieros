@@ -1,6 +1,6 @@
 <main>
     <h3 style="text-align: center; padding-bottom: 16px; border-bottom: 1px solid #d9d9d9;">
-        Formulario de Registro
+        {{ !isEditing() ?  'Formulario de Registro' : 'Actualizar Producto' }}
         <app-button label="X" 
                     qa-id="close-btn" 
                     aspect="basic"

@@ -9,38 +9,52 @@
                 kind="primary"/>
 </section>
 <main style="margin-top: 0;">
-    <table qa-id="financial-products-list" style="width: 100%;">
-        <thead>
-            <tr>
-                <th>Logo</th>
-                <th>Nombre del producto</th>
-                <th>Descripción</th>
-                <th>Fecha de liberación</th>
-                <th>Fecha de reestructuración</th>
-            </tr>
-        </thead>
-        <tbody>
-            @for (product of products() | slice:0:pageSize(); track product.id) {
+    <div style="overflow-x: auto;">
+        <table qa-id="financial-products-list" style="width: 100%; min-width: 770px;">
+            <thead>
                 <tr>
-                    <td>
-                        <img [src]="product.logo" [alt]="product.name" onerror="this.onerror=null;this.src='https://placehold.co/32?text=BP'">
-                    </td>
-                    <td>
-                        {{ product.name }}
-                    </td>
-                    <td>
-                        {{ product.description }}
-                    </td>
-                    <td>
-                        {{ product.releaseDate | date:'dd/MM/yyyy' }}
-                    </td>
-                    <td>
-                        {{ product.revisionDate | date:'dd/MM/yyyy' }}
-                    </td>
+                    <th>Logo</th>
+                    <th>Nombre del producto</th>
+                    <th>Descripción</th>
+                    <th>Fecha de liberación</th>
+                    <th>Fecha de reestructuración</th>
+                    <th></th>
                 </tr>
-            }
-        </tbody>
-    </table>
+            </thead>
+            <tbody #body>
+                @for (product of products() | slice:0:pageSize(); track product.id) {
+                    <tr>
+                        <td>
+                            <img [src]="product.logo" [alt]="product.name" onerror="this.onerror=null;this.src='https://placehold.co/32?text=BP'">
+                        </td>
+                        <td>
+                            {{ product.name }}
+                        </td>
+                        <td>
+                            {{ product.description }}
+                        </td>
+                        <td>
+                            {{ product.releaseDate | date:'dd/MM/yyyy' }}
+                        </td>
+                        <td>
+                            {{ product.revisionDate | date:'dd/MM/yyyy' }}
+                        </td>
+                        <td style="position: relative;">
+                            <button [cdkMenuTriggerFor]="menuRef" class="actions-btn">
+                                <img src="icons/more-vert.svg" width="32" height="32">
+                            </button>
+                            <ng-template #menuRef>
+                                <div cdkMenu class="product-actions">
+                                    <button cdkMenuItem (cdkMenuItemTriggered)="onEditProduct(product.id)">Editar</button>
+                                    <button cdkMenuItem (cdkMenuItemTriggered)="onDeleteProduct(product)" style="color: red; border-top: 1px solid #f7f7f7;">Eliminar</button>
+                                </div>
+                            </ng-template>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
     <section class="table-footer-toolbar">
         <span>{{products().length}} Resultados</span>
         <select name="items" id="page-size" [ngModel]="pageSize()" (ngModelChange)="pageSize.set(+$event)">

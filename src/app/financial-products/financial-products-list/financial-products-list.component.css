@@ -38,3 +38,38 @@ img {
     ;
     padding: 16px 0;
 }
+.actions-btn {
+    background-color: #f7f7f7;
+    border: none;
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease-in-out;
+    &:hover {
+        box-shadow: 3px 3px 15px rgba(139, 139, 139, 0.1);
+    }
+}
+.product-actions {
+    min-width: 160px;
+    background-color: #fff;
+    border-radius: 4px;
+    box-shadow: 3px 3px 15px rgba(139, 139, 139, 0.4);
+    padding: 8px 0;
+    button {
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        width: 100%;
+        transition: all 0.2s ease-in-out;
+        font-weight: 600;
+        text-align: left;
+        padding: 8px;
+        &:hover {
+            background-color: #f7f7f7;
+        }
+    }
+}
