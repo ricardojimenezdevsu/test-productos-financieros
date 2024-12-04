@@ -107,7 +107,7 @@ export class FinancialProductFormComponent implements OnInit {
               this._resetFormValue();
             },
             error: () => {
-              this.router.navigate(['/products']);
+              this.onCloseForm();
             },
           });
       }
@@ -163,11 +163,15 @@ export class FinancialProductFormComponent implements OnInit {
       : this.bpService.createFinancialProduct(payload);
     request
       .pipe(takeUntil(this._terminator$))
-      .subscribe(() => this.router.navigate(['/products']));
+      .subscribe(() => this.onCloseForm());
   }
 
   onCancel() {
     this._resetFormValue();
+  }
+
+  onCloseForm() {
+    this.router.navigate(['/products']);
   }
 
   validateUniqueId() {

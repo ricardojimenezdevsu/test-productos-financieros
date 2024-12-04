@@ -1,5 +1,8 @@
 <main>
-    <h3 style="text-align: center; padding-bottom: 16px; border-bottom: 1px solid #d9d9d9;">Formulario de Registro</h3>
+    <h3 style="text-align: center; padding-bottom: 16px; border-bottom: 1px solid #d9d9d9;">
+        Formulario de Registro
+        <button type="button" (click)="onCloseForm()" style="float: right;">x</button>
+    </h3>
     <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
         <div>
             <app-input label="ID" placeholder="ID" formControlName="id" type="text" />
