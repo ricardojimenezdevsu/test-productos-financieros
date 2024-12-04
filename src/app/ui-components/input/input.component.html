@@ -1,1 +1,11 @@
-<p>input works!</p>
+<div class="bp-input">
+    <input [type]="type()" 
+        [id]="inputId()"
+           [placeholder]="placeholder()" 
+           [disabled]="disabled()" 
+           [ngModel]="inputControl()" 
+           (ngModelChange)="onValueChanged($event)" />
+    @if (label()) {
+        <label [for]="inputId()">{{ label() }}</label>
+    }
+</div>

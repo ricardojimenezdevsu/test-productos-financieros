@@ -1,0 +1,47 @@
+:host {
+    outline: 1px solid black;
+   
+    display: flex;
+    border-radius: 4px;
+    &.ng-invalid.ng-dirty {
+        outline-color: #ff0000;
+        & input::placeholder, & :not(input:focus-visible) + label,  & :not(input:focus-within) + label{
+            outline-color: #ff0000b4;
+        }
+    }
+}
+:host:has(input:focus-visible),:host:has(input:focus-within){
+    outline-color: darkslateblue;
+    outline-width: 2px;
+}
+.bp-input {
+    position: relative;
+    flex: 1;
+}
+input {
+    outline: none;
+    padding: 8px 16px;
+    width: 100%;
+    border: none;
+    border-radius: 4px;
+}
+label {
+    position: absolute;
+    cursor: text;
+    left: 1px;
+    font-size: 14px;
+    font-weight: 400;
+    top: 8px;
+    width: calc(100% - 2px);
+    background-color: #fff;
+    transition: all 150ms ease-in-out;
+    color: #a3a3a3;
+    padding-inline: 8px;
+    z-index: 10;
+}
+
+input:focus-visible + label, input:focus-within + label, input:not(:placeholder-shown) + label {
+    left: 4px;
+    transform: translateY(-20px);
+    width: fit-content;
+}
