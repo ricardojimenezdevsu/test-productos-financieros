@@ -4,71 +4,78 @@
         <button type="button" (click)="onCloseForm()" style="float: right;">x</button>
     </h3>
     <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
-        <div>
-            <app-input label="ID" placeholder="ID" formControlName="id" type="text" />
-            @if (id.errors && (id.touched || id.dirty)) {
-                @if(id.errors['required']) {
+        <div class="form-row">
+            <div>
+                <app-input label="ID" placeholder="ID" formControlName="id" type="text" />
+                @if (id.errors && (id.touched || id.dirty)) {
+                    @if(id.errors['required']) {
+                        <small class="error">Este campo es requerido</small>
+                    }
+                    @if(id.errors['minlength']) {
+                        <small class="error">Mínimo {{id.errors['minlength']['requiredLength']}} caracteres</small>
+                    }
+                    @if(id.errors['maxlength']) {
+                        <small class="error">Máximo {{id.errors['maxlength']['requiredLength']}} caracteres</small>
+                    }
+                    @if(id.errors['duplicated']) {
+                        <small class="error">ID no valido</small>
+                    }
+                }
+            </div>
+            <div>
+                <app-input label="Nombre" placeholder="Nombre" formControlName="name" type="text" />
+                @if (name.errors && (name.touched || name.dirty)) {
+                    @if(name.errors['required']) {
+                        <small class="error">Este campo es requerido</small>
+                    }
+                    @if(name.errors['minlength']) {
+                        <small class="error">Mínimo {{name.errors['minlength']['requiredLength']}} caracteres</small>
+                    }
+                    @if(name.errors['maxlength']) {
+                        <small class="error">Máximo {{name.errors['maxlength']['requiredLength']}} caracteres</small>
+                    }
+                }
+            </div>
+        </div>
+        <div class="form-row">
+            <div>
+                <app-input label="Descripción" placeholder="Descripción" formControlName="description" type="text" />
+                @if (description.errors && (description.touched || description.dirty)) {
+                    @if(description.errors['required']) {
+                        <small class="error">Este campo es requerido</small>
+                    }
+                    @if(description.errors['minlength']) {
+                        <small class="error">Mínimo {{description.errors['minlength']['requiredLength']}} caracteres</small>
+                    }
+                    @if(description.errors['maxlength']) {
+                        <small class="error">Máximo {{description.errors['maxlength']['requiredLength']}} caracteres</small>
+                    }
+                }
+            </div>
+            <div>
+                <app-input label="Logo" placeholder="Logo" formControlName="logo" type="text" />
+                @if (logo.errors && (logo.touched || logo.dirty)) {
                     <small class="error">Este campo es requerido</small>
                 }
-                @if(id.errors['minlength']) {
-                    <small class="error">Mínimo {{id.errors['minlength']['requiredLength']}} caracteres</small>
-                }
-                @if(id.errors['maxlength']) {
-                    <small class="error">Máximo {{id.errors['maxlength']['requiredLength']}} caracteres</small>
-                }
-                @if(id.errors['duplicated']) {
-                    <small class="error">ID no valido</small>
-                }
-            }
+            </div>
         </div>
-        <div>
-            <app-input label="Nombre" placeholder="Nombre" formControlName="name" type="text" />
-            @if (name.errors && (name.touched || name.dirty)) {
-                @if(name.errors['required']) {
-                    <small class="error">Este campo es requerido</small>
+        <div class="form-row">
+            <div>
+                <app-input type="date" placeholder="Fecha Liberación" label="Fecha Liberación" formControlName="releaseDate" />
+                @if (releaseDate.errors && (releaseDate.touched || releaseDate.dirty)) {
+                    @if(releaseDate.errors['required']) {
+                        <small class="error">Este campo es requerido</small>
+                    }
+                    @if(releaseDate.errors['minDate']) {
+                        <small class="error">La fecha debe ser igual o mayor a la fecha actual</small>
+                    }
                 }
-                @if(name.errors['minlength']) {
-                    <small class="error">Mínimo {{name.errors['minlength']['requiredLength']}} caracteres</small>
-                }
-                @if(name.errors['maxlength']) {
-                    <small class="error">Máximo {{name.errors['maxlength']['requiredLength']}} caracteres</small>
-                }
-            }
+            </div>
+            <div>
+                <app-input type="date" placeholder="Fecha Revisión" label="Fecha Revisión" formControlName="revisionDate" />
+            </div>
         </div>
-        <div>
-            <app-input label="Descripción" placeholder="Descripción" formControlName="description" type="text" />
-            @if (description.errors && (description.touched || description.dirty)) {
-                @if(description.errors['required']) {
-                    <small class="error">Este campo es requerido</small>
-                }
-                @if(description.errors['minlength']) {
-                    <small class="error">Mínimo {{description.errors['minlength']['requiredLength']}} caracteres</small>
-                }
-                @if(description.errors['maxlength']) {
-                    <small class="error">Máximo {{description.errors['maxlength']['requiredLength']}} caracteres</small>
-                }
-            }
-        </div>
-        <div>
-            <app-input label="Logo" placeholder="Logo" formControlName="logo" type="text" />
-            @if (logo.errors && (logo.touched || logo.dirty)) {
-                <small class="error">Este campo es requerido</small>
-            }
-        </div>
-        <div>
-            <app-input type="date" placeholder="Fecha Liberación" label="Fecha Liberación" formControlName="releaseDate" />
-            @if (releaseDate.errors && (releaseDate.touched || releaseDate.dirty)) {
-                @if(releaseDate.errors['required']) {
-                    <small class="error">Este campo es requerido</small>
-                }
-                @if(releaseDate.errors['minDate']) {
-                    <small class="error">La fecha debe ser igual o mayor a la fecha actual</small>
-                }
-            }
-        </div>
-        <div>
-            <app-input type="date" placeholder="Fecha Revisión" label="Fecha Revisión" formControlName="revisionDate" />
-        </div>
+        
         <div class="form-actions">
             <button type="button" (click)="onCancel()" qa-id="cancel-btn">Reiniciar</button>
             <button type="submit">{{ !isEditing() ? 'Agregar' : 'Editar' }}</button>
