@@ -4,4 +4,37 @@
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
+    margin-top: 48px;
+    max-width: min(90%, 1280px);
+    margin-inline: auto;
+    padding: 16px 0;
+}
+table {
+    border-collapse: collapse;
+}
+thead {
+    background-color: #f7f7f7;
+    th {
+        padding: 16px 8px;
+        text-align: left;
+    }
+}
+tr {
+    border-bottom: 1px solid #d9d9d9;
+}
+tbody tr td{
+    padding: 8px;
+}
+img {
+    max-width: 32px;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    border-radius: 50%;
+}
+.table-footer-toolbar {
+    display: flex;
+    gap: 16px;
+    justify-content: space-between
+    ;
+    padding: 16px 0;
 }

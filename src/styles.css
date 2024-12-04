@@ -19,7 +19,7 @@ nav {
     place-items: center;
 }
 main {
-    max-width: min(90%, 768px);
+    max-width: min(90%, 1280px);
     overflow-x: auto;
     margin-top: 48px;
     margin-inline: auto;
