@@ -33,6 +33,11 @@ describe('FinancialProductsListComponent', () => {
       }),
     ],
   });
+  beforeAll(() => {
+    HTMLDialogElement.prototype.show = jest.fn();
+    HTMLDialogElement.prototype.showModal = jest.fn();
+    HTMLDialogElement.prototype.close = jest.fn();
+  });
 
   beforeEach(() => {
     fixture = createComponent();
@@ -91,4 +96,41 @@ describe('FinancialProductsListComponent', () => {
     component.onEditProduct('test');
     expect(navigateSpy).toHaveBeenCalledWith(['/products/edit', 'test']);
   });
+
+  it('should delete product', fakeAsync(() => {
+    // open modal
+    component.onDeleteProduct(MOCK_PRODUCTS[1]);
+    fixture.detectChanges();
+    tick(200);
+    fixture.detectChanges();
+
+    const cancelButton = document.body.querySelector(
+      '[qa-id="cancel-delete-btn"]'
+    ) as HTMLButtonElement;
+
+    expect(component.products()).toHaveLength(30);
+    // cancels doesn't update the products
+    cancelButton.click();
+    fixture.detectChanges();
+
+    expect(component.products()).toHaveLength(30);
+
+    // open modal
+    component.onDeleteProduct(MOCK_PRODUCTS[1]);
+    fixture.detectChanges();
+    tick(200);
+    fixture.detectChanges();
+
+    const confirmButton = document.body.querySelector(
+      '[qa-id="confirm-delete-btn"]'
+    ) as HTMLButtonElement;
+
+    confirmButton.click();
+    tick();
+    fixture.detectChanges();
+
+    expect(component.products()).toHaveLength(29);
+
+    flush();
+  }));
 });

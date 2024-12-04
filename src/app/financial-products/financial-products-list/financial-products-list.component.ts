@@ -1,4 +1,14 @@
-import { Component, linkedSignal, resource, signal } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  EmbeddedViewRef,
+  linkedSignal,
+  resource,
+  signal,
+  TemplateRef,
+  viewChild,
+  ViewContainerRef,
+} from '@angular/core';
 import { Router } from '@angular/router';
 import { InputComponent } from '../../ui-components/input/input.component';
 import { ButtonComponent } from '../../ui-components/button/button.component';
@@ -8,7 +18,6 @@ import { DatePipe, SlicePipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { CdkMenuModule } from '@angular/cdk/menu';
 import { FinancialProduct } from '../financial-product.model';
-import { S } from '@angular/cdk/keycodes';
 
 @Component({
   selector: 'app-financial-products-list',
@@ -34,8 +43,18 @@ export class FinancialProductsListComponent {
   });
 
   searchTerm = signal('');
+  confirmationDialog = viewChild<ElementRef<HTMLDialogElement>>('dialog');
+  dialogTemplateRef = viewChild<TemplateRef<{ product: FinancialProduct }>>(
+    'confirmDeleteDialog'
+  );
 
-  constructor(private router: Router, private bpService: BpService) {}
+  private _modalRef?: EmbeddedViewRef<{ product: FinancialProduct }>;
+
+  constructor(
+    private router: Router,
+    private bpService: BpService,
+    private viewContainer: ViewContainerRef
+  ) {}
 
   onAddNewProduct() {
     this.router.navigate(['/products/add']);
@@ -59,17 +78,36 @@ export class FinancialProductsListComponent {
   }
 
   onDeleteProduct(product: FinancialProduct) {
-    const confirmed = confirm(
-      `¿Estas seguro de elminar el producto ${product.name}?`
+    this._modalRef = this.viewContainer.createEmbeddedView(
+      this.dialogTemplateRef()!,
+      { product }
     );
-    if (confirmed) {
-      this.bpService.deleteFinancialProduct(product.id).subscribe({
-        next: () => {
-          this.products.update((p) =>
-            p.filter((prod) => prod.id !== product.id)
-          );
-        },
-      });
-    }
+    // tick to ensure dialog element is created
+    setTimeout(() => {
+      this.confirmationDialog()?.nativeElement.showModal();
+      this.confirmationDialog()!.nativeElement.onclose = () => {
+        this._clearModalRef();
+      };
+    }, 200);
+  }
+
+  onConfirmDelete(productId: string) {
+    this.bpService.deleteFinancialProduct(productId).subscribe({
+      next: () => {
+        this.products.update((p) => p.filter((prod) => prod.id !== productId));
+      },
+    });
+    this.closeModal();
+  }
+
+  closeModal() {
+    this.confirmationDialog()?.nativeElement.close();
+  }
+
+  private _clearModalRef() {
+    // wait to transition finished
+    setTimeout(() => {
+      this._modalRef?.destroy();
+    }, 300);
   }
 }

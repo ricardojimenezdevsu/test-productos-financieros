@@ -1,75 +1,74 @@
 .table-toolbar {
-    display: flex;
-    gap: 16px;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    margin-top: 48px;
-    max-width: min(90%, 1280px);
-    margin-inline: auto;
-    padding: 16px 0;
+  display: flex;
+  gap: 16px;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 48px;
+  max-width: min(90%, 1280px);
+  margin-inline: auto;
+  padding: 16px 0;
 }
 table {
-    border-collapse: collapse;
+  border-collapse: collapse;
 }
 thead {
-    background-color: #f7f7f7;
-    th {
-        padding: 16px 8px;
-        text-align: left;
-    }
+  background-color: #f7f7f7;
+  th {
+    padding: 16px 8px;
+    text-align: left;
+  }
 }
 tr {
-    border-bottom: 1px solid #d9d9d9;
+  border-bottom: 1px solid #d9d9d9;
 }
-tbody tr td{
-    padding: 8px;
+tbody tr td {
+  padding: 8px;
 }
 img {
-    max-width: 32px;
-    aspect-ratio: 1/1;
-    object-fit: cover;
-    border-radius: 50%;
+  max-width: 32px;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  border-radius: 50%;
 }
 .table-footer-toolbar {
-    display: flex;
-    gap: 16px;
-    justify-content: space-between
-    ;
-    padding: 16px 0;
+  display: flex;
+  gap: 16px;
+  justify-content: space-between;
+  padding: 16px 0;
 }
 .actions-btn {
-    background-color: #f7f7f7;
-    border: none;
-    width: 32px;
-    height: 32px;
-    cursor: pointer;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.2s ease-in-out;
-    &:hover {
-        box-shadow: 3px 3px 15px rgba(139, 139, 139, 0.1);
-    }
+  background-color: #f7f7f7;
+  border: none;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease-in-out;
+  &:hover {
+    box-shadow: 3px 3px 15px rgba(139, 139, 139, 0.1);
+  }
 }
 .product-actions {
-    min-width: 160px;
-    background-color: #fff;
-    border-radius: 4px;
-    box-shadow: 3px 3px 15px rgba(139, 139, 139, 0.4);
-    padding: 8px 0;
-    button {
-        background-color: transparent;
-        border: none;
-        cursor: pointer;
-        width: 100%;
-        transition: all 0.2s ease-in-out;
-        font-weight: 600;
-        text-align: left;
-        padding: 8px;
-        &:hover {
-            background-color: #f7f7f7;
-        }
+  min-width: 160px;
+  background-color: #fff;
+  border-radius: 4px;
+  box-shadow: 3px 3px 15px rgba(139, 139, 139, 0.4);
+  padding: 8px 0;
+  button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    transition: all 0.2s ease-in-out;
+    font-weight: 600;
+    text-align: left;
+    padding: 8px;
+    &:hover {
+      background-color: #f7f7f7;
     }
+  }
 }

@@ -64,3 +64,21 @@
         </select>
     </section>
 </main>
+
+<ng-template #confirmDeleteDialog let-product="product">
+    <dialog #dialog>
+        <main style="max-width: 400px;
+        margin: 0;">
+            ¿Estas seguro de elminar el producto {{ product.name }}?
+        </main>
+        <footer style="display: flex; gap: 16px; padding-top: 16px; border-top: 1px solid #f7f7f7; justify-content: center;">
+            <app-button label="Cancelar"
+                        (click)="closeModal()"
+                        qa-id="cancel-delete-btn"/>
+            <app-button label="Confirmar"
+                        qa-id="confirm-delete-btn"
+                        (click)="onConfirmDelete(product.id)"
+                        kind="primary"/>
+        </footer>
+    </dialog>
+</ng-template>
