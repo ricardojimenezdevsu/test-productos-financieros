@@ -1,0 +1,26 @@
+.bp-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    padding: 8px 24px;
+    transition: all 0.2s ease-in-out;
+    font-weight: 600;
+    &:not(.basic):hover {
+        filter: saturate(1.5);
+        box-shadow: 3px 3px 15px rgba(139, 139, 139, 0.1);
+    }
+    &.secondary {
+        background-color: #efefef;
+    }
+    &.primary {
+        background-color: #ffe553;
+        color: rgb(97, 97, 97);
+        &.basic {
+            color: #ffe553;
+        }
+    }
+    &.basic {
+        background-color: transparent;
+    }
+}

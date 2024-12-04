@@ -12,10 +12,11 @@ import { map, Observable, of, Subject, takeUntil } from 'rxjs';
 import { BpService } from '../../api/bp.service';
 import { FinancialProduct } from '../financial-product.model';
 import { InputComponent } from '../../ui-components/input/input.component';
+import { ButtonComponent } from '../../ui-components/button/button.component';
 
 @Component({
   selector: 'app-financial-product-form',
-  imports: [ReactiveFormsModule, InputComponent],
+  imports: [ReactiveFormsModule, InputComponent, ButtonComponent],
   templateUrl: './financial-product-form.component.html',
   styleUrl: './financial-product-form.component.css',
 })

@@ -1,7 +1,11 @@
 <main>
     <h3 style="text-align: center; padding-bottom: 16px; border-bottom: 1px solid #d9d9d9;">
         Formulario de Registro
-        <button type="button" (click)="onCloseForm()" style="float: right;">x</button>
+        <app-button label="X" 
+                    qa-id="close-btn" 
+                    aspect="basic"
+                    style="float: right;"
+                    (click)="onCloseForm()" />
     </h3>
     <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
         <div class="form-row">
@@ -77,8 +81,13 @@
         </div>
         
         <div class="form-actions">
-            <button type="button" (click)="onCancel()" qa-id="cancel-btn">Reiniciar</button>
-            <button type="submit">{{ !isEditing() ? 'Agregar' : 'Editar' }}</button>
+            <app-button label="Reiniciar" 
+                        qa-id="cancel-btn" 
+                        (click)="onCancel()" />
+            <app-button [label]="!isEditing() ? 'Agregar' : 'Editar'" 
+                        qa-id="submit-btn" 
+                        kind="primary"
+                        type="submit" />
         </div>
     </form>
 </main>

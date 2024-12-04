@@ -3,7 +3,11 @@
         <div class="search">
             <app-input label="Buscar" placeholder="Buscar" qa-id="search-financial-product" type="text" />
         </div>
-        <button qa-id="add-financial-product" type="button" (click)="onAddNewProduct()">Agregar</button>
+        
+        <app-button label="Agregar"
+                    qa-id="add-financial-product"
+                    (click)="onAddNewProduct()"
+                    kind="primary"/>
     </section>
     <section>
         <table qa-id="financial-products-list">
