@@ -5,7 +5,11 @@ import {
   ApiFinancialProductPage,
 } from './financial-product/api-financial-product.model';
 import { catchError, map, Observable, of } from 'rxjs';
-import { toFinancialProducts } from './financial-product/financial-product.mapper';
+import {
+  toApiFinancialProduct,
+  toFinancialProduct,
+  toFinancialProducts,
+} from './financial-product/financial-product.mapper';
 import { FinancialProduct } from '../financial-products/financial-product.model';
 
 @Injectable({
@@ -23,16 +27,21 @@ export class BpService {
     );
   }
 
-  createFinancialProduct(payload: ApiFinancialProduct) {
-    return this.http.post(`${this._baseUrl}`, payload);
+  createFinancialProduct(payload: FinancialProduct) {
+    return this.http.post(`${this._baseUrl}`, toApiFinancialProduct(payload));
   }
 
-  getFinancialProduct(id: string) {
-    return this.http.get(`${this._baseUrl}/${id}`);
+  getFinancialProduct(id: string): Observable<FinancialProduct> {
+    return this.http
+      .get<ApiFinancialProduct>(`${this._baseUrl}/${id}`)
+      .pipe(map((res) => toFinancialProduct(res)));
   }
 
-  updateFinancialProduct(id: string, payload: ApiFinancialProduct) {
-    return this.http.put(`${this._baseUrl}/${id}`, payload);
+  updateFinancialProduct(id: string, payload: FinancialProduct) {
+    return this.http.put(
+      `${this._baseUrl}/${id}`,
+      toApiFinancialProduct(payload)
+    );
   }
 
   deleteFinancialProduct(id: string) {
