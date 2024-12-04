@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { InputComponent } from '../../ui-components/input/input.component';
 import { ButtonComponent } from '../../ui-components/button/button.component';
 import { BpService } from '../../api/bp.service';
-import { lastValueFrom } from 'rxjs';
+import { firstValueFrom } from 'rxjs';
 import { DatePipe, SlicePipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -19,7 +19,7 @@ export class FinancialProductsListComponent {
     this.productsResource.hasValue() ? this.productsResource.value()! : []
   );
   productsResource = resource({
-    loader: async () => lastValueFrom(this.bpService.getFinancialProducts()),
+    loader: async () => firstValueFrom(this.bpService.getFinancialProducts()),
     request: () => ({}),
   });
 

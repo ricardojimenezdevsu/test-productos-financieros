@@ -38,6 +38,7 @@ export class InputComponent implements ControlValueAccessor {
   onValueChanged(newValue: string) {
     this.inputControl.set(newValue);
     this.onChange(newValue);
+    this.onTouched();
   }
 
   writeValue(value?: string): void {

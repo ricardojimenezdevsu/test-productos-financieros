@@ -43,7 +43,7 @@
     </table>
     <section class="table-footer-toolbar">
         <span>{{products().length}} Resultados</span>
-        <select name="items" id="items" [ngModel]="pageSize()" (ngModelChange)="pageSize.set($event)">
+        <select name="items" id="page-size" [ngModel]="pageSize()" (ngModelChange)="pageSize.set(+$event)">
             <option [value]="5">5</option>
             <option [value]="10">10</option>
             <option [value]="20">20</option>
